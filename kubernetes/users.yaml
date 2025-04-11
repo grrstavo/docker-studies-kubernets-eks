@@ -29,7 +29,7 @@ spec:
   storageClassName: efs-sc
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: fs-0fb5af8376e1348d8
+    volumeHandle: 
 ---
 apiVersion: v1
 kind: Service
@@ -49,7 +49,7 @@ kind: Deployment
 metadata:
   name: users-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: users
@@ -63,8 +63,8 @@ spec:
           image: grrstavo/kub-dep-users:latest
           env:
             - name: MONGODB_CONNECTION_URI
-              value: 'mongodb+srv://grrstavo:Z4QfdN7l44EwTcwW@cluster0.wdyyjrl.mongodb.net?retryWrites=true&w=majority&appName=Cluster0'
-            - name: AUTH_API_ADDRESSS
+              value: ''
+            - name: AUTH_API_ADDRESS
               value: 'auth-service.default:3000'
           volumeMounts:
             - name: efs-vol
